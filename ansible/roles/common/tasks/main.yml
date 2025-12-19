@@ -1,0 +1,5 @@
+- name: Ensure banner exists
+  copy:
+    dest: "../configs/banner.txt"
+    content: |
+      SecureNetOps Lab Banner (role/common)

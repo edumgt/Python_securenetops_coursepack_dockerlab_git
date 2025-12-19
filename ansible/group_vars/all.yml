@@ -1,0 +1,2 @@
+# (예시) 민감정보는 vault로 분리하는 패턴
+controller_api_token: "{{ lookup('env', 'CONTROLLER_API_TOKEN') | default('') }}"

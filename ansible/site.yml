@@ -1,0 +1,6 @@
+- name: SecureNetOps roles apply
+  hosts: local
+  gather_facts: false
+  roles:
+    - common
+    - web

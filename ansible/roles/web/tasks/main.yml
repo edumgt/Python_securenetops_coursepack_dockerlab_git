@@ -1,0 +1,5 @@
+- name: Copy banner into target_web container
+  community.docker.docker_container_copy_into:
+    container: securenetops_coursepack-target_web-1
+    path: "../configs/banner.txt"
+    container_path: "/app/banner.txt"
