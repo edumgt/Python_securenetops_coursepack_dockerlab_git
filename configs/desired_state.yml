@@ -1,0 +1,6 @@
+desired_state:
+  firewall_policy:
+    target_web_allowed_inbound_ports: [8080]
+  monitoring_policy:
+    web_latency_ms_warn: 250
+    web_latency_ms_crit: 600
