@@ -1,0 +1,7 @@
+requests
+PyYAML
+pydantic
+tenacity
+pytest
+fastapi
+uvicorn[standard]
