@@ -1,0 +1,59 @@
+services:
+  controller_api:
+    build: ./services/controller_api
+    environment:
+      - CONTROLLER_API_TOKEN=${CONTROLLER_API_TOKEN}
+    ports:
+      - "8000:8000"
+    networks:
+      netlab:
+        ipv4_address: 172.30.0.10
+
+  target_web:
+    build: ./services/target_web
+    environment:
+      - APP_ENV=lab
+    ports:
+      - "8080:8080"
+    networks:
+      netlab:
+        ipv4_address: 172.30.0.20
+
+  monitor:
+    build: ./services/monitor
+    environment:
+      - CONTROLLER_API_TOKEN=${CONTROLLER_API_TOKEN}
+      - ALERT_WEBHOOK_URL=${ALERT_WEBHOOK_URL}
+    volumes:
+      - ./data:/data
+      - ./reports:/app/reports
+      - ./configs:/app/configs:ro
+    depends_on:
+      - controller_api
+      - target_web
+    networks:
+      netlab:
+        ipv4_address: 172.30.0.30
+
+  client:
+    build: ./services/client
+    environment:
+      - CONTROLLER_API_TOKEN=${CONTROLLER_API_TOKEN}
+      - ALERT_WEBHOOK_URL=${ALERT_WEBHOOK_URL}
+    volumes:
+      - ./reports:/app/reports
+      - ./configs:/app/configs:ro
+    depends_on:
+      - controller_api
+      - target_web
+    tty: true
+    networks:
+      netlab:
+        ipv4_address: 172.30.0.40
+
+networks:
+  netlab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
