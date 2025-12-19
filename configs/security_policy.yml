@@ -1,0 +1,14 @@
+policy:
+  allowlisted_endpoints:
+    - name: "controller_api"
+      host: "172.30.0.10"
+      ports: [8000]
+    - name: "target_web"
+      host: "172.30.0.20"
+      ports: [8080]
+  http_headers_required:
+    - "x-content-type-options"
+    - "x-frame-options"
+  secrets_rules:
+    forbid_patterns:
+      - "dev-token-please-change"

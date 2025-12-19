@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -U pip && \
 COPY ../../src /app/src
 COPY ../../tools /app/tools
 COPY ../../configs /app/configs
-CMD ["bash", "-lc", "sleep infinity"]
+CMD ["python", "-m", "tools.monitor_agent", "--config", "configs/monitor.yml"]
