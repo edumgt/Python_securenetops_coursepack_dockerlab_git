@@ -1,0 +1,22 @@
+checks:
+  dns:
+    - name: "resolve controller by name"
+      hostname: "controller_api"
+    - name: "resolve web by name"
+      hostname: "target_web"
+  tcp:
+    - name: "controller api port"
+      host: "172.30.0.10"
+      port: 8000
+      timeout_s: 1
+    - name: "web app port"
+      host: "172.30.0.20"
+      port: 8080
+      timeout_s: 1
+  http:
+    - name: "controller health"
+      url: "http://172.30.0.10:8000/health"
+      timeout_s: 2
+    - name: "web health"
+      url: "http://172.30.0.20:8080/health"
+      timeout_s: 2
